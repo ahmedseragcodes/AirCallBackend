@@ -1,18 +1,25 @@
+//Imports
 const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const callsRouter = require("./callsAPI/callsAPIRouter");
+//Instance Of The Server 
 const server = express();
-
-const PORT = process.env.PORT || 3000;
-
-server.listen(PORT, ()=>{
-    res.json({ message: "API Up"})
-})
-
+//global Middleware
+server.use(express.json());
 server.use(cors());
 server.use(helmet());
-// server.use(api, router);
+server.use("/api/calls", callsRouter);
 
-server.use(req, res, ()=>{
-    res.json({
-        message: "API Up";
-    })
+
+//Endpoint to Test Server Up
+server.get("/", (req, res, next)=>{
+    res.send("<h2>Success</h2>");
 })
+
+//Error Handling
+server.use((err, req, res, next)=>{
+    res.status(500).json({message: err.message});
+})
+
+module.exports = server;
