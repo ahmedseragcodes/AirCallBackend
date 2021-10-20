@@ -9,10 +9,10 @@ module.exports = {
       filename: './dev.sqlite3'
     },
     migrations: {
-      directory: 
+      directory: "./data/migrations"
     },
     seeds: {
-
+      directory: "./data/seeds"
     },
     pool: {
       afterCreate: ((conn, done)=>{
@@ -21,36 +21,42 @@ module.exports = {
     }
   },
 
-  staging: {
-    client: 'postgresql',
+  testing: {
+    client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      filename: "./data/test.db3"
     },
     pool: {
-      min: 2,
-      max: 10
+      afterCreate: ((conn, done)=>{
+        conn.run("PRAGMA foreign_keys=ON", done);
+      })
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
     }
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+   client: `sqlite3`,
+   useNullAsDefault: true,
+   connection: {
+     filename: "./data/production.db3"
+   },
+   pool: {
+     afterCreate: ((conn, done)=>{
+      conn.run("PRAGMA foreign_keys = ON", done)
+     })
+   },
+   migrations: {
+     directory: "./data/migrations"
+   },
+   seeds: {
+     directory: "./data/seeds"
+   }
   }
 
 };
