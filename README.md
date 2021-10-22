@@ -4,7 +4,9 @@ Backend Web API For  AirCall App Frontend https://github.com/ahmedseragcodes/air
 ## Instructions
 
 npm i - install dependencies 
-npm run server - stir up local server to being utilizing API or APIs
+npx knex migrate:latest - deploy migration table
+npx knex seed:run - seed the tables 
+npm run server - stir up local server to begin utilizing API or APIs
 
 ## Utilized
 
