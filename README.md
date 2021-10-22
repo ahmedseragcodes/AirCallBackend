@@ -3,13 +3,13 @@ Backend Web API For  AirCall App Frontend https://github.com/ahmedseragcodes/air
 
 ## Instructions
 
-npm i - install dependencies 
-npx knex migrate:latest - deploy migration table
-npx knex seed:run - seed the tables 
-npm run server - stir up local server to begin utilizing API or APIs
+npm i - install dependencies </br>
+npx knex migrate:latest - deploy migration table </br>
+npx knex seed:run - seed the tables </br>
+npm run server - stir up local server to begin utilizing API or APIs </br>
 
 ## Utilized
 
-Backend: Node, Express
-Integration: KnexJS
-Database: SQLite
+Backend: Node, Express </br>
+Integration: KnexJS </br>
+Database: SQLite </br>
