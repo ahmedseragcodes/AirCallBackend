@@ -1,5 +1,6 @@
 //Imports
 const knex = require("knex");
+const { result } = require("lodash");
 const db = require("../dbConfig");
 
 //Modeling
@@ -27,9 +28,9 @@ const updateCall = async (updatedCall) => {
 
     const updatedCallId = updatedCall.id;
 
-    const result = db("calls").where("id", updatedCallId).insert(updatedCall);
+    await db("calls").where("id", updatedCallId).update(updatedCall);
 
-    return result;
+    return getCallById(updatedCall.id)[0];
 
 }
 
