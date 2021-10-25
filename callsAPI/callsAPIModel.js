@@ -28,9 +28,11 @@ const updateCall = async (updatedCall) => {
 
     const updatedCallId = updatedCall.id;
 
-    await db("calls").where("id", updatedCallId).update(updatedCall);
+    db("calls").where("id", updatedCallId).update(updatedCall);
 
-    return getCallById(updatedCall.id)[0];
+    const upToDateCall = await db("calls").where("id", updatedCallId);
+
+    return upToDateCall;
 
 }
 
